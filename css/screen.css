@@ -2,8 +2,49 @@
  # SETTINGS
 /*---------------------------------------*/
 
+@font-face {
+  font-family: 'Inter Web';
+  src:  url('../fonts/Inter-Regular.woff2') format('woff2');
+  font-weight: 400;
+
+}
+@font-face {
+  font-family: 'Inter Web SemiBold';
+  src:  url('../font/Inter-SemiBold.woff2') format('woff2');
+  font-weight: 600;
+
+}
+
+
 :root {
   /* CSS variables here */
+  accent-color: red;
+  --global-color-primary-400: #4F95FF;
+  --global-color-primary-500: #3385FF;
+  --global-color-primary-600: #2E77E6;
+  --global-color-neutral-050: #F5F6FA;
+  --global-color-neutral-100: #E2E3E7; 
+  --global-color-neutral-200: #CACCD4;
+  --global-color-neutral-300: #B5B6C0;
+  --global-color-neutral-400: #A0A1AD;
+  --global-color-neutral-500: #8B8C9A;
+  --global-color-neutral-600: #757787;
+  --global-color-neutral-700: #606274;
+  --global-color-neutral-800: #4B4C60;
+  --global-color-neutral-900: #35374D;
+  --global-color-neutral-950: #20223A;
+  --global-baseline: .5rem; 
+  --global-whitespace: calc(var(--global-baseline) * 3); /* = 24px */
+  --global-whitespace-xs: calc(var(--global-baseline) * 0.5) /* = 4px */
+  --global-whitespace-sm: calc(var(--global-baseline) * 1) /* = 8px */
+  --global-whitespace-md: calc(var(--global-baseline) * 1.5) /* = 16px */
+  --global-whitespace-lg: calc(var(--global-baseline) * 4) /* = 32px */   
+  --global-whitespace-xl: calc(var(--global-whitespace-md) * 2); /* = 48px */    
+  --global-whitespace-xxl: calc(var(--global-baseline) * 6) /* = 32px */    
+  --global-borderWidth: 1px;
+  --global-borderRadius:3px;
+
+
 }
 
 /*---------------------------------------/*
@@ -38,12 +79,13 @@ img {
 html {
   font-size: 100%;
   line-height: 1.5;
-  font-family: "Helvetica Neue", Helvetica, arial, sans-serif;
-  color: #171b1c;
+  font-family:"Inter Web", "Helvetica Neue", Helvetica, arial, sans-serif;
+  color: #20223a;
   scroll-behavior: smooth;
   /* anti aliasing */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #F5F6FA;
 }
 
 /*
@@ -138,16 +180,22 @@ a {
 }
 
 a:visited {
-  color: #008fcc;
+  color: var(--global-color-primary-500);
 }
 
 a:hover {
-  color: #00b2ff;
+  color: var(--global-color-primary-400);
 }
 
 a:active {
-  color: #006b99;
+  color: var(--global-color-primary-600);
 }
+
+input,label{
+  display: block;
+}
+
+
 
 /*---------------------------------------/*
  # OBJECTS
@@ -160,6 +208,12 @@ a:active {
 .o-row {
   padding: 1.5rem 1.5rem 0;
   display: flow-root;
+}
+
+.o-row--body{
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
 }
 
 /*
@@ -289,6 +343,38 @@ a:active {
   align-content: space-between;
 }
 
+
+/*
+ Object: Button reset
+ ---
+ Small button reset object
+
+*/
+
+.o-button-reset {
+  border: none;
+  margin: 0;
+  padding: 0;
+  width: auto;
+  overflow: visible;
+  background: transparent;
+ 
+ /* inherit font & color from ancestor */
+  color: inherit;
+  font: inherit;
+ 
+ /* Normalize `line-height`. Cannot be changed from `normal` in Firefox 4+. */
+  line-height: normal;
+ 
+ /* Corrects font smoothing for webkit */
+ -webkit-font-smoothing: inherit;
+ -moz-osx-font-smoothing: inherit;
+ 
+ /* Corrects inability to style clickable `input` types in iOS */
+ }
+ 
+ 
+
 /*------------------------------------*\
   #COMPONENTS
 \*------------------------------------*/
@@ -297,6 +383,124 @@ a:active {
     ---
     Component description
 */
+.c-logo {
+  height: 1.5rem;
+  display: flex;
+  justify-content: center;
+  
+  
+
+}
+.c-logo__symbol{
+  height: 100%;
+  display: block;
+}
+.c-logo__path--1{
+  fill:#20223A;
+}
+.c-logo__path--2{
+  fill: var(--global-color-primary-500);
+}
+
+.c-logo__path--3{
+  fill: #1B4186;
+}
+
+
+/* component form field */
+.c-from-field--option{
+  display: flex;
+  gap: .5rem;
+}
+.c-input{
+  appearance: none;
+  width: 100%;
+  border-radius: 3px;
+  line-height: 1.5rem;
+  padding: calc(.75rem - 1px) 1rem;
+  border-color: #E2E3E7;
+  border: 1px solid #E2E3E7;
+  font: inherit;
+  color:#B5B6C0;
+  outline: none;
+
+}
+
+.c-input:focus{
+  box-shadow: h-offset v-offset blur spread color;
+  box-shadow: 0 0 0 3px  --global-color-primary-5004d; 
+  
+}
+
+.c-button {
+  color: white;
+  background-color: var(--global-color-primary-500);
+  border: var(--global-color-primary-600);
+  border-radius: 3px;
+  padding: .75rem;
+  width: 100%;
+
+  &:hover {
+    background-color: var(--global-color-primary-400);
+  }
+  &:active {
+    background-color: var(--global-color-primary-600);
+  }
+  &:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px var(--global-color-primary-500);
+  }
+}
+
+.c-card{
+  background-color: white;
+  border-radius: 3px;
+  box-shadow: 0 0 0 3px rgba(0,0, 0, 0.07);
+}
+.c-card__body{
+  padding: 3rem;
+
+}
+
+.c-card__title{
+  display: flex;
+  justify-content: center;
+  padding-top: 3rem;  
+  font-family: inherit;
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin-bottom: 0rem;
+
+}
+
+.c-card__footer{
+  display: flex;
+  justify-content: center;
+  padding-top: 1rem;
+  color: #757787;
+  border-top: #757787;
+  box-shadow: 0 0 0 3px rgba(0,0, 0, 0.07);
+
+}
+
+.c-label{
+  font-size: 0.875rem;
+  line-height: 1rem;
+  margin-bottom: 0.5rem;
+  color: #606274;
+
+
+
+}
+.c-label--option {
+  
+  margin-bottom: 0rem;
+}
+
+.c-passwd{
+  display: flex;
+  justify-content: center;
+}
 
 /*---------------------------------------/*
  # UTILITIES
@@ -306,6 +510,10 @@ a:active {
     ---
     max-width utility classes
 */
+.u-max-width-xs{
+  max-width: 27rem;
+}
+
 .u-max-width-s {
   max-width: 37.5rem;
 }
